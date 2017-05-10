@@ -5,10 +5,12 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
+import globals from './components/common/globals'
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-Vue.use(ElementUI)
+Vue.use(ElementUI);
+Vue.use(globals);
 
 /* eslint-disable no-new */
 new Vue({
