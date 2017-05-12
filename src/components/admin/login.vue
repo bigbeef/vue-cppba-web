@@ -22,7 +22,6 @@
 </template>
 
 <script>
-  import globals from '../common/globals.vue'
   export default {
     data: function(){
       return {
@@ -47,14 +46,13 @@
     },
     methods: {
       submitForm(formName) {
-        const self = this;
-        self.$refs[formName].validate((valid) => {
+        this.$refs[formName].validate((valid) => {
           if (valid) {
-            localStorage.setItem('ms_username',self.ruleForm.username);
+            localStorage.setItem('ms_username',this.ruleForm.username);
 
-            self.$router.push('/admin');
+            this.$router.push('/admin');
           } else {
-            console.log('error submit!!');
+            this.$message.error('请确认你的输入项！');
             return false;
           }
         });
