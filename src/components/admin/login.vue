@@ -9,10 +9,6 @@
         <el-form-item prop="password">
           <el-input type="password" placeholder="密码" v-model="ruleForm.password" @keyup.enter.native="submitForm('ruleForm')"></el-input>
         </el-form-item>
-        <el-form-item prop="code">
-          <el-input v-model="ruleForm.code" placeholder="验证码" style="width: 150px;"></el-input>
-          <img :src="serverUrl" style="width: 120px;height: 40px;margin-bottom: -15px;"/>
-        </el-form-item>
         <div class="login-btn">
           <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
         </div>
@@ -27,8 +23,7 @@
       return {
         ruleForm: {
           username: '',
-          password: '',
-          code: ''
+          password: ''
         },
         rules: {
           username: [
@@ -36,21 +31,36 @@
           ],
           password: [
             { required: true, message: '请输入密码', trigger: 'blur' }
-          ],
-          code: [
-            { required: true, message: '请输入验证码', trigger: 'blur' }
           ]
         },
-        serverUrl: this.serverUrl + "/auth_image.htm"
+        serverUrl: this.SERVERURL + "/auth_image"
       }
     },
     methods: {
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            localStorage.setItem('ms_username',this.ruleForm.username);
+            localStorage.setItem('userName', this.ruleForm.username);
 
-            this.$router.push('/admin');
+            this.$http({
+              method: 'post',
+              url: this.SERVERURL + '/admin/user/login',
+              params: {
+                userName: this.ruleForm.username,
+                password: this.ruleForm.password
+              }
+            }).then(response => {
+                var data = response.data;
+              if(data.success){
+                localStorage.setItem("token",data.data);
+                this.$router.push('/admin');
+              }else{
+                this.$message.error(data.msg);
+              }
+            }, response => {
+              this.$message.error('网络繁忙！');
+            })
+
           } else {
             this.$message.error('请确认你的输入项！');
             return false;
@@ -82,7 +92,7 @@
     left:50%;
     top:50%;
     width:300px;
-    height:200px;
+    height:150px;
     margin:-150px 0 0 -190px;
     padding:40px;
     border-radius: 5px;
