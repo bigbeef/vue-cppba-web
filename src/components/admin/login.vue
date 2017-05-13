@@ -44,7 +44,7 @@
 
             this.$http({
               method: 'post',
-              url: this.SERVERURL + '/admin/user/login',
+              url: '/admin/user/login',
               params: {
                 userName: this.ruleForm.username,
                 password: this.ruleForm.password

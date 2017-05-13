@@ -8,13 +8,15 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import globals from './components/common/globals'
 
-Vue.config.productionTip = false;
-Vue.prototype.$http = axios;
-
 Vue.use(ElementUI);
 Vue.use(globals);
 
-/* eslint-disable no-new */
+Vue.config.productionTip = false;
+Vue.prototype.$http = axios;
+
+axios.defaults.baseURL = Vue.prototype.SERVERURL;
+axios.defaults.headers.common['Authorization'] = localStorage.getItem("token");
+
 new Vue({
   el: '#app',
   router,

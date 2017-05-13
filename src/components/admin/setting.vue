@@ -50,8 +50,7 @@
       getUserInfo(){
         this.$http({
           method: 'post',
-          url: this.SERVERURL + '/admin/user/get',
-          headers: {'Authorization': localStorage.getItem("token")}
+          url: '/admin/user/setting',
         }).then(response => {
           var data = response.data;
           if (data.success) {
@@ -66,8 +65,7 @@
       onSubmit(){
         this.$http({
           method: 'post',
-          url: this.SERVERURL + '/admin/user/update',
-          headers: {'Authorization': localStorage.getItem("token")},
+          url: '/admin/user/setting/update',
           params: this.form
         }).then(response => {
           var data = response.data;
