@@ -52,7 +52,8 @@
             }).then(response => {
                 var data = response.data;
               if(data.success){
-                localStorage.setItem("token",data.data);
+                localStorage.setItem("token",data.data.token);
+                localStorage.setItem("nickName",data.data.user.nickName);
                 this.$router.push('/admin');
               }else{
                 this.$message.error(data.msg);
