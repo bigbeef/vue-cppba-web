@@ -4,6 +4,9 @@
             <el-menu-item index="setting">
                 <i class="el-icon-setting"></i>设置
             </el-menu-item>
+          <el-menu-item index="articleClass">
+            <i class="el-icon-menu"></i>文章类别
+          </el-menu-item>
             <el-submenu index="2">
                 <template slot="title"><i class="el-icon-menu"></i>表格</template>
                 <el-menu-item index="basetable">基础表格</el-menu-item>

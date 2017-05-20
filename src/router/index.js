@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import adminLogin from '@/components/admin/login'
-import admin from '@/components/admin/index'
-import adminSetting from '@/components/admin/setting'
+import admin from '@/components/admin/Index'
+import adminLogin from '@/components/admin/Login'
+import adminSetting from '@/components/admin/Setting'
+import adminArticleClass from '@/components/admin/ArticleClass'
 
 Vue.use(Router);
 
@@ -15,7 +16,8 @@ export default new Router({
       path: '/admin',
       component: admin,
       children:[
-        { path: '/setting'  , component: adminSetting }
+        { path: '/setting'  , component: adminSetting },
+        { path: '/articleClass'  , component: adminArticleClass }
       ]
     }
   ]
